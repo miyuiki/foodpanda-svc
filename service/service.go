@@ -32,7 +32,9 @@ func CheckNewOrder(c *gin.Context) {
 	}
 	var orderTrackingList []string
 	for _, order := range orderHistory.Data.Items {
-		if order.CurrentStatus.Code != 16 && order.CurrentStatus.Code != 4 {
+		if order.CurrentStatus.Code != 16 && order.CurrentStatus.Code != 13 {
+			// code 16 is completed.
+			// code 13 is canceld.
 			orderTrackingList = append(orderTrackingList, order.OrderCode)
 		}
 	}
